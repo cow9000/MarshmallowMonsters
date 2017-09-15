@@ -10,6 +10,11 @@ public class MarshmallowMonster
 	
 	public MarshmallowMonster() {
 		//Initializes everything.
+		this.name = "Normal Joe";
+		this.eyeCount = 2;
+		this.armCount = 2;
+		this.tentacleAmount = 2;
+		this.hasBloop = false;
 	}
 	
 	public MarshmallowMonster(String name, int eyeCount, int armCount, double tentacleAmout, boolean hasBloop){
