@@ -17,7 +17,7 @@ public class MarshmallowMonster
 		this.hasBloop = false;
 	}
 	
-	public MarshmallowMonster(String name, int eyeCount, int armCount, double tentacleAmout, boolean hasBloop){
+	public MarshmallowMonster(String name, int eyeCount, int armCount, double tentacleAmount, boolean hasBloop){
 		this.name = name;
 		this.eyeCount = eyeCount;
 		this.armCount = armCount;
