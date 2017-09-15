@@ -11,9 +11,9 @@ public class MarshmallowMonster
 	public MarshmallowMonster() {
 		//Initializes everything.
 		this.name = "Normal Joe";
-		this.eyeCount = 2;
+		this.eyeCount = 1;
 		this.armCount = 2;
-		this.tentacleAmount = 2;
+		this.tentacleAmount = 1;
 		this.hasBloop = false;
 	}
 	
@@ -25,6 +25,7 @@ public class MarshmallowMonster
 		this.hasBloop = hasBloop;
 	}
 	
+	//setter methods
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -45,6 +46,8 @@ public class MarshmallowMonster
 		this.hasBloop = hasBloop;
 	}
 	
+	
+	//Return methods
 	public String returnName() {
 		return name;
 	}
@@ -67,9 +70,21 @@ public class MarshmallowMonster
 	
 	
 	public String toString() {
-		String hasBloopText = " doesn't have a bloop.";
-		if(hasBloop) hasBloopText = " does have a bloop.";
-		return "This is " + name + ", he has " + eyeCount + " eyes, " + armCount + " arms, " + tentacleAmount  + " tentacles, and it " + hasBloopText;
+		String hasBloopText = "doesn't have a bloop.";
+		if(hasBloop) hasBloopText = "does have a bloop.";
+		
+		String armCountText = "arm";
+		if(armCount > 1 || armCount == 0) armCountText = "swole arms";
+		
+		String eyeCountText = "eye";
+		if(eyeCount > 1 || eyeCount == 0) eyeCountText = "eyes";
+		
+		String tentacleAmountText = "tentacle";
+		if(tentacleAmount > 1) tentacleAmountText = "tentacles";
+		
+		String description = "This is " + name + ", he has " + eyeCount + " " + eyeCountText + ", " + armCount + " "; 
+		description += armCountText +", " + tentacleAmount  + " " + tentacleAmountText + ", and it " + hasBloopText;
+		return description;
 	}
 	
 	
