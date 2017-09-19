@@ -48,23 +48,23 @@ public class MarshmallowMonster
 	
 	
 	//Return methods
-	public String returnName() {
+	public String getName() {
 		return name;
 	}
 	
-	public int returnEyeCount() {
+	public int getEyeCount() {
 		return eyeCount;
 	}
 	
-	public int returnArmCount() {
+	public int getArmCount() {
 		return armCount;
 	}
 	
-	public double returnTentacleAmount() {
+	public double getTentacleAmount() {
 		return tentacleAmount;
 	}
 	
-	public boolean returnHasBloop() {
+	public boolean getHasBloop() {
 		return hasBloop;
 	}
 	
@@ -83,7 +83,7 @@ public class MarshmallowMonster
 		if(tentacleAmount > 1) tentacleAmountText = "tentacles";
 		
 		String description = "This is " + name + ", he has " + eyeCount + " " + eyeCountText + ", " + armCount + " "; 
-		description += armCountText +", " + tentacleAmount  + " " + tentacleAmountText + ", and it " + hasBloopText;
+		description += armCountText +", " + tentacleAmount  + " " + tentacleAmountText + ", and it " + hasBloopText + ". This is a desert rainfrog, squeaking, viral sensation. 11 Million hits and counting, it sounds like a dog toy.";
 		return description;
 	}
 	
