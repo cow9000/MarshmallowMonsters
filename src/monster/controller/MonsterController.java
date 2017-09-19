@@ -48,10 +48,21 @@ public class MonsterController
 			
 			monster.setArmCount(monster.getArmCount() -  armEat);
 			System.out.println("Okay, now I have this many arms " + monster.getArmCount());
+			
 		}
+		System.out.println("I grew 10000 eyes");
+		monster.setEyeCount(monster.getEyeCount() + 10000);
 		
-		
-		
+		System.out.println("How many eyes you want to eat?");
+		int eyeEat = myScanner.nextInt();
+		if(eyeEat == 0) {
+			System.out.println("EATT MEEEE");
+		}else if(eyeEat > monster.getEyeCount() || eyeEat < 0) {
+			System.out.print("I dont have that many eyes");
+		}else {
+			monster.setEyeCount(monster.getEyeCount() - eyeEat);
+			System.out.print("You ate some eyes");
+		}
 		myScanner.close();
 	}
 	
