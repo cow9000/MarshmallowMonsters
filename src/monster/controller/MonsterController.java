@@ -5,20 +5,25 @@ import java.awt.Graphics2D;
 import java.util.Scanner;
 
 import monster.model.MarshmallowMonster;
+import monster.view.MonsterDisplay;
 
 public class MonsterController
 {
+	
+	private MonsterDisplay popup;
+	
+	public MonsterController() {
+		popup = new MonsterDisplay();
+	}
+	
+	
 	public void start()
 	{
 		// MarshmallowMonster monster = new MarshmallowMonster();
-		// System.out.println(monster);
+		// popup.displayText(monster);
 
 		MarshmallowMonster donny = new MarshmallowMonster("Donny", 1, 8, 2, true);
-		System.out.println(donny);
-
-		donny.setArmCount(donny.getArmCount() - 1);
-
-		System.out.println(donny);
+		popup.displayText(donny.toString());
 
 		interactWithMonster(donny);
 
@@ -26,68 +31,102 @@ public class MonsterController
 
 	private void interactWithMonster(MarshmallowMonster monster)
 	{
-		Scanner myScanner = new Scanner(System.in);
-
-		System.out.println(monster.getName() + " wants to know how many eyes you want to eat. How many you want to eat?");
-		int consumed = myScanner.nextInt();
+		
+		int consumed = 0;
+		String response = popup.getResponse(monster.getName() + " wants to know how many eyes you want to eat. How many you want to eat?");
+		if(isValidInteger(response)) {
+			consumed = Integer.parseInt(response);
+		}
 
 		monster.setEyeCount(monster.getEyeCount() - consumed);
-		System.out.println(monster);
+		popup.displayText(monster.toString());
 
 		monster.setArmCount(1000000);
-		System.out.println(monster);
+		popup.displayText(monster.toString());
 
-		System.out.println("How many arms are you interested in eating? I have " + monster.getArmCount());
-		// consumed = myScanner.nextInt();
-		int armEat = myScanner.nextInt();
-
+		int armEat = 0;
+		response = popup.getResponse("How many arms are you interested in eating? I have " + monster.getArmCount());
+		if(isValidInteger(response)) {
+			armEat = Integer.parseInt(response);
+		}
+		
 		if (armEat == 0)
 		{
-			System.out.println("Not hungry? So sad.....");
+			popup.displayText("Not hungry? So sad.....");
 		}
 		else if (armEat < 0 || armEat > monster.getArmCount())
 		{
-			System.out.println("Invalid sorry matey. YOU CANT DO THIS...<><><><><><><ååååfthrhreh><><å><><><><><><>å<aaaaaaaaaaaaae0><bbbbbbbbbbn><><><å><><>åå");
+			popup.displayText("Invalid sorry matey. YOU CANT DO THIS...<><><><><><><ååååfthrhreh><><å><><><><><><>å<aaaaaaaaaaaaae0><bbbbbbbbbbn><><><å><><>åå");
 		}
 		else
 		{
 
 			monster.setArmCount(monster.getArmCount() - armEat);
-			System.out.println("Okay, now I have this many arms " + monster.getArmCount());
+			popup.displayText("Okay, now I have this many arms " + monster.getArmCount());
 
 		}
-		System.out.println("I grew 10000 eyes");
+		popup.displayText("I grew 10000 eyes");
 		monster.setEyeCount(monster.getEyeCount() + 10000);
 
-		System.out.println("How many eyes you want to eat?");
-		int eyeEat = myScanner.nextInt();
+		int eyeEat = 0;
+		response = popup.getResponse("How many eyes you want to eat?");
+		if(isValidInteger(response)) {
+			eyeEat = Integer.parseInt(response);
+		}
 		if (eyeEat == 0)
 		{
-			System.out.println("EATT MEEEE");
+			popup.displayText("EATT MEEEE");
 		}
 		else if (eyeEat > monster.getEyeCount() || eyeEat < 0)
 		{
-			System.out.print("I dont have that many eyes");
+			popup.displayText("I dont have that many eyes");
 		}
 		else
 		{
 			monster.setEyeCount(monster.getEyeCount() - eyeEat);
-			System.out.print("You ate some eyes");
+			popup.displayText("You ate some eyes");
 		}
 
-		System.out.println("How many tentacles do you want to eat? I have " + monster.getTentacleAmount());
-
-		double eatTentacles = myScanner.nextDouble();
+		double eatTentacles = 0;
+		response = popup.getResponse("How many tentacles do you want to eat? I have " + monster.getTentacleAmount());
+		if(isValidDouble(response)) {
+			eatTentacles = Double.parseDouble(response);
+		}
+		
 		if (eatTentacles == monster.getTentacleAmount())
 		{
-			System.out.println("You ate all my tentacles");
+			popup.displayText("You ate all my tentacles");
 		}
 		else
 		{
-			System.out.println("More likely");
+			popup.displayText("More likely");
 		}
-
-		myScanner.close();
+		
+		
+	}
+	
+	//Helper methods
+	private boolean isValidInteger(String sample) {
+		boolean valid = false;
+		try {
+			Integer.parseInt(sample);
+			valid = true;
+		}
+		catch(NumberFormatException error) {
+			popup.displayText("You need to input an int " + sample + " is not an int");
+		}
+		return valid;
+	}
+	private boolean isValidDouble(String sample) {
+		boolean valid = false;
+		try {
+			Double.parseDouble(sample);
+			valid = true;
+		}
+		catch(NumberFormatException error) {
+			popup.displayText("You need to input an double - " + sample + " is not an double");
+		}
+		return valid;
 	}
 
 }
