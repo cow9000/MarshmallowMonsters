@@ -2,12 +2,16 @@ package monster.model;
 
 public class MarshmallowMonster
 {
+	
+	//Declaration variables
 	private String name;
 	private int eyeCount;
 	private int armCount;
 	private double tentacleAmount;
 	private boolean hasBloop;
 	
+	
+	//Constructor
 	public MarshmallowMonster() {
 		//Initializes everything.
 		this.name = "Normal Joe";
@@ -17,6 +21,7 @@ public class MarshmallowMonster
 		this.hasBloop = false;
 	}
 	
+	//Another constructor with parameters
 	public MarshmallowMonster(String name, int eyeCount, int armCount, double tentacleAmount, boolean hasBloop){
 		this.name = name;
 		this.eyeCount = eyeCount;
@@ -27,18 +32,22 @@ public class MarshmallowMonster
 	
 	//setter methods
 	public void setName(String name) {
+		//Set method name to name
 		this.name = name;
 	}
 	
 	public void setEyeCount(int eyeCount) {
+		//set eyecount method datamember to eyecount
 		this.eyeCount = eyeCount;
 	}
 	
 	public void setArmCount(int armCount) {
+		//set armcound method datamember to parameter value
 		this.armCount = armCount;
 	}
 	
 	public void setTentacleAmount(double tentacleAmount) {
+		//set method datamember to parameter value
 		this.tentacleAmount = tentacleAmount;
 	}
 	
@@ -47,7 +56,7 @@ public class MarshmallowMonster
 	}
 	
 	
-	//Return methods
+	//Return methods, all of these return specified data member
 	public String getName() {
 		return name;
 	}
@@ -68,7 +77,7 @@ public class MarshmallowMonster
 		return hasBloop;
 	}
 	
-	
+	//When this is called, return description.
 	public String toString() {
 		String hasBloopText = "doesn't have a bloop.";
 		if(hasBloop) hasBloopText = "does have a bloop.";
