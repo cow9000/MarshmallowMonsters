@@ -1,9 +1,8 @@
 package monster.controller;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.Scanner;
 
+import java.util.ArrayList;
+import java.util.List;
 import monster.model.MarshmallowMonster;
 import monster.view.MonsterDisplay;
 
@@ -11,11 +10,12 @@ public class MonsterController
 {
 
 	private MonsterDisplay popup;
-
+	private List<MarshmallowMonster> monsterList;
 	
 	//Constructor, initialize the data member popup
 	public MonsterController()
 	{
+		monsterList = new ArrayList<MarshmallowMonster>();
 		popup = new MonsterDisplay();
 	}
 
@@ -35,12 +35,18 @@ public class MonsterController
 		}*/
 		
 		
-		
+		MarshmallowMonster basic = new MarshmallowMonster();
 		
 		MarshmallowMonster donny = new MarshmallowMonster("Donny", 1, 8, 2, true);
 		popup.displayText(donny.toString());
-
-		interactWithMonster(donny);
+		
+		monsterList.add(basic);
+		monsterList.add(donny);
+		
+		for (MarshmallowMonster m : monsterList) {
+			interactWithMonster(m);
+		}
+		
 
 	}
 
@@ -136,6 +142,7 @@ public class MonsterController
 			monster.setEyeCount(monster.getEyeCount() - eyeEat);
 			popup.displayText("You ate some eyes");
 		}
+		
 		//eatTentacles data member
 		double eatTentacles = 0;
 		//get response
