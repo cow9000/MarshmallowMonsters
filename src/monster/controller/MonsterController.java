@@ -1,6 +1,5 @@
 package monster.controller;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import monster.model.MarshmallowMonster;
@@ -11,152 +10,164 @@ public class MonsterController
 
 	private MonsterDisplay popup;
 	private List<MarshmallowMonster> monsterList;
-	
-	//Constructor, initialize the data member popup
+
+	// Constructor, initialize the data member popup
 	public MonsterController()
 	{
 		monsterList = new ArrayList<MarshmallowMonster>();
 		popup = new MonsterDisplay();
 	}
 
-	//When called initialize donny as a monster and start the interactWithMonster method
+	// When called initialize donny as a monster and start the interactWithMonster method
 	public void start()
 	{
-		
-		/*int count = 0;
-		while(count < 10)
-		{
-			popup.displayText("Am i not the coolest?!");
-			count += 5;
-		}*/
-		
-		/*for(int loop = 0; loop < 10; loop += 1) {
-			popup.displayText("HI MONKEY DOGERONI " + loop);
-		}*/
-		
-		
+
+		/*
+		 * int count = 0; while(count < 10) { popup.displayText("Am i not the coolest?!"); count += 5; }
+		 */
+
+		/*
+		 * for(int loop = 0; loop < 10; loop += 1) { popup.displayText("HI MONKEY DOGERONI " + loop); }
+		 */
+
 		MarshmallowMonster basic = new MarshmallowMonster();
-		
+
 		MarshmallowMonster donny = new MarshmallowMonster("Donny", 1, 8, 2, true);
 		popup.displayText(donny.toString());
-		
+
 		monsterList.add(basic);
 		monsterList.add(donny);
-		
-		for (MarshmallowMonster m : monsterList) {
-			interactWithMonster(m);
-		}
-		
 
+		useList();
+
+		// interactWithMonster(donny);
+
+	}
+
+	private void useList()
+	{
+		for (int i = 0; i < monsterList.size(); i++)
+		{
+			MarshmallowMonster currentMonster = monsterList.get(i);
+			popup.displayText(currentMonster.getName());
+			String updateName = popup.getResponse("What should my new name be?");
+			currentMonster.setName(updateName);
+			popup.displayText("My new name is " + currentMonster.getName());
+		}
+
+		for (MarshmallowMonster current : monsterList)
+		{
+			popup.displayText("My name is " + current.getName());
+		}
 	}
 
 	private void interactWithMonster(MarshmallowMonster monster)
 	{
 
-		//create data member consumed
+		// create data member consumed
 		int consumed = 0;
-		//get response 
+		// get response
 		String response = popup.getResponse(monster.getName() + " wants to know how many eyes you want to eat. How many you want to eat?");
-		//check if response is valid
-		
-		while(!isValidInteger(response)) {
+		// check if response is valid
+
+		while (!isValidInteger(response))
+		{
 			popup.displayText("grr type in a better answer next time");
 			response = popup.getResponse("Type in an integer value!");
 		}
 
 		consumed = Integer.parseInt(response);
-		
-		//Change eye count based on what user inputted
+
+		// Change eye count based on what user inputted
 		monster.setEyeCount(monster.getEyeCount() - consumed);
-		//Display the description from the toString method
+		// Display the description from the toString method
 		popup.displayText(monster.toString());
 
-		//Set arm count
+		// Set arm count
 		monster.setArmCount(1000000);
-		//display description from the toString method
+		// display description from the toString method
 		popup.displayText(monster.toString());
 
-		//data member armEat
+		// data member armEat
 		int armEat = 0;
-		//Get user input
+		// Get user input
 		response = popup.getResponse("How many arms are you interested in eating? I have " + monster.getArmCount());
-		//check if valid
+		// check if valid
 		while (!isValidInteger(response))
 		{
-			//set if valid
+			// set if valid
 			popup.displayText("grr type in a better answer next time");
 			response = popup.getResponse("Type in an integer value!");
-			
+
 		}
-		
+
 		armEat = Integer.parseInt(response);
-		
-		
+
 		if (armEat == 0)
 		{
-			//armEat equals 0 so show text
+			// armEat equals 0 so show text
 			popup.displayText("Not hungry? So sad.....");
 		}
 		else if (armEat < 0 || armEat > monster.getArmCount())
 		{
-			//armEat is less then 0, or armEat is bigger then arm count or monster
+			// armEat is less then 0, or armEat is bigger then arm count or monster
 			popup.displayText("Invalid sorry matey. YOU CANT DO THIS...<><><><><><><ååååfthrhreh><><å><><><><><><>å<aaaaaaaaaaaaae0><bbbbbbbbbbn><><><å><><>åå");
 		}
 		else
 		{
-			//if it all works out set arm count
+			// if it all works out set arm count
 			monster.setArmCount(monster.getArmCount() - armEat);
 			popup.displayText("Okay, now I have this many arms " + monster.getArmCount());
 
 		}
-		//display text
+		// display text
 		popup.displayText("I grew 10000 eyes");
 		monster.setEyeCount(monster.getEyeCount() + 10000);
-		//eyeEat created
+		// eyeEat created
 		int eyeEat = 0;
-		//get response
+		// get response
 		response = popup.getResponse("How many eyes you want to eat?");
 		while (!isValidInteger(response))
 		{
-			//set if valid
+			// set if valid
 			popup.displayText("grr type in a better answer next time");
 			response = popup.getResponse("Type in an integer value!");
-			
+
 		}
-		
+
 		eyeEat = Integer.parseInt(response);
-		
+
 		if (eyeEat == 0)
 		{
-			//eatEat equals 0
+			// eatEat equals 0
 			popup.displayText("EATT MEEEE");
 		}
 		else if (eyeEat > monster.getEyeCount() || eyeEat < 0)
 		{
-			
+
 			popup.displayText("I dont have that many eyes");
 		}
 		else
 		{
-			//Ate eyes so subtract from eyecount
+			// Ate eyes so subtract from eyecount
 			monster.setEyeCount(monster.getEyeCount() - eyeEat);
 			popup.displayText("You ate some eyes");
 		}
-		
-		//eatTentacles data member
+
+		// eatTentacles data member
 		double eatTentacles = 0;
-		//get response
+		// get response
 		response = popup.getResponse("How many tentacles do you want to eat? I have " + monster.getTentacleAmount());
 		while (!isValidDouble(response))
 		{
-			//eatTentacles change if valid
+			// eatTentacles change if valid
 			popup.displayText("grr type in a better answer next time");
 			response = popup.getResponse("Type in a double value!");
 		}
-		
+
 		eatTentacles = Double.parseDouble(response);
-		
-		//Based on response display a text
+
+		// Based on response display a text
 		if (eatTentacles == monster.getTentacleAmount())
 		{
 			popup.displayText("You ate all my tentacles");
@@ -165,17 +176,18 @@ public class MonsterController
 		{
 			popup.displayText("More likely");
 		}
-		//isBoolean dataMember
+		// isBoolean dataMember
 		boolean isBoolean = false;
 		response = popup.getResponse("true or false?");
-		//If valid change
-		while(!isValidBoolean(response)) {
+		// If valid change
+		while (!isValidBoolean(response))
+		{
 			popup.displayText("grr type in a better answer next time");
 			response = popup.getResponse("Type in a boolean value!");
 		}
-		
+
 		isBoolean = Boolean.parseBoolean(response);
-		
+
 		popup.displayText("Cool");
 
 	}
